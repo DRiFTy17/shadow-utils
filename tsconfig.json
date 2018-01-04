@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "types": [
+      "node",
+      "jasmine",
+      "karma-fixture"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "shadow-utils": ["src/lib"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

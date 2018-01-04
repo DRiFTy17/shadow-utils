@@ -1,0 +1,26 @@
+<div id="root-container">
+  <div id="light-container">
+    <input type="text" id="light-input" />
+    <!-- Test comment node light container -->
+    <textarea id="light-textarea"></textarea>
+    <button id="light-button"></button>
+    <p id="light-p"></p>
+    <div id="light-div">
+      <div id="light-sub-div"></div>
+    </div>
+  </div>
+
+  <!-- Test comment node - light root -->
+
+  <test-web-component>
+    <div slot="slot-1">
+      <input type="text" id="slot-input" />
+      <!-- Test comment node - slot -->
+      <textarea id="slot-textarea"></textarea>
+      <button id="slot-button"></button>
+      <p id="slot-p"></p>
+
+      <test-web-component></test-web-component>
+    </div>
+  </test-web-component>
+</div>

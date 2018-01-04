@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "lib": ["es2015", "dom"],
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "types": [
+      "node"
+    ],
+    "baseUrl": "."
+  },
+  "files": [
+    "gulpfile.ts"
+  ]
+}
