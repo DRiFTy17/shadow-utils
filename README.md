@@ -4,14 +4,8 @@
 
 Provides a library of useful functions for working with native web components and shadow DOM in the browser.
 
-## Goals
-
-## Browser Support
-
 ## Installation
 
 ```
 npm install shadow-utils
 ```
-
-## API
