@@ -125,22 +125,32 @@ describe('ShadowUtils', () => {
       const input = document.body.querySelector('input[id=light-input]') as HTMLInputElement;
       input.focus();
       
-      expect(ShadowUtils.getActiveElement()).toBe(document.activeElement as HTMLElement);
+      const actual = input;
+      const expected = ShadowUtils.getActiveElement() as HTMLInputElement;
+
+      expect(actual).toBe(expected);
+      expect(document.activeElement as HTMLElement).toBe(input);
     });
 
-    it('should detect focus on slotted element', () => {
-      const input = document.body.querySelector('input[id=slot-input]') as HTMLInputElement;
-      input.focus();
+    it('should detect focus on slotted element', (done: DoneFn) => {      
+      requestAnimationFrame(() => {
+        const input = document.body.querySelector('input[id=slot-input]') as HTMLInputElement;
+        input.focus();
 
-      expect(ShadowUtils.getActiveElement()).toBe(input);
+        const expected = input;
+        const actual = ShadowUtils.getActiveElement() as HTMLInputElement;
+
+        expect(input).toBe(actual);
+        done();
+      });
     });
-
+    
     it('should detect focus on shadow element', () => {
       const webComponent = document.body.querySelector('test-web-component-input') as TestWebComponentInput;
       const input = (<ShadowRoot>webComponent.shadowRoot).querySelector('input[id=shadow-input]') as HTMLInputElement;
       input.focus();
 
       expect(ShadowUtils.getActiveElement()).toBe(input);
-    });    
+    });
   });
 });

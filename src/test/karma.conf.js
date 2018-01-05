@@ -1,5 +1,5 @@
 module.exports = config => {
-  config.set({
+  const configuration = {
     basePath: '',
 
     frameworks: ['jasmine', 'karma-typescript', 'fixture'],
@@ -8,12 +8,15 @@ module.exports = config => {
       require('karma-jasmine'),
       require('karma-typescript'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-spec-reporter'),
       require('karma-fixture'),
       require('karma-html2js-preprocessor')
     ],
 
     files: [
+      '../../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+      '../../node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
       { pattern: 'spec/**/*.ts' },
       { pattern: 'web-components/**/*.ts' },
       { pattern: 'spec/fixtures/**/*.html' },
@@ -55,12 +58,25 @@ module.exports = config => {
       failFast: false
     },
 
+    customLaunchers: {
+      Chrome_travis_ci: {
+          base: 'Chrome',
+          flags: ['--no-sandbox']
+      }
+    },
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox'],
     singleRun: false,
     concurrency: Infinity
-  });
+  };
+
+  if (process.env.TRAVIS) {
+      configuration.browsers = ['Chrome_travis_ci', 'Firefox'];
+  }
+
+  config.set(configuration);
 };

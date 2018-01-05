@@ -9,7 +9,7 @@
     "test:once": "npm run test -- --single-run",
     "serve:coverage": "http-server -c 1 -o -p 9875 src/test/coverage/html-report/html",
     "lint": "gulp lint",
-    "travis": "npm run lint && npm run test"
+    "travis": "npm run lint && npm run test:once"
   },
   "keywords": [
     "shadow",
@@ -36,6 +36,7 @@
     "@types/jasmine": "^2.8.3",
     "@types/karma-fixture": "^0.2.3",
     "@types/node": "^8.5.5",
+    "@webcomponents/webcomponentsjs": "^1.0.22",
     "gulp": "^3.9.1",
     "gulp-tslint": "^8.1.2",
     "html2js": "^0.2.0",
@@ -43,6 +44,7 @@
     "jasmine-core": "^2.8.0",
     "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
     "karma-fixture": "^0.2.6",
     "karma-html2js-preprocessor": "^1.1.0",
     "karma-jasmine": "^1.1.1",
