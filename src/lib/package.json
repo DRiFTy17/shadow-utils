@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Utilities for working with the shadow DOM",
   "main": "index.js",
-  "typings": "typings/index.d.ts",
+  "typings": "index.d.ts",
   "license": "MIT"
 }
