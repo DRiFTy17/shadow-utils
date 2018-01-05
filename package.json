@@ -8,7 +8,8 @@
     "test": "karma start src/test/karma.conf.js",
     "test:once": "npm run test -- --single-run",
     "serve:coverage": "http-server -c 1 -o -p 9875 src/test/coverage/html-report/html",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "travis": "npm run lint && npm run test"
   },
   "keywords": [
     "shadow",
