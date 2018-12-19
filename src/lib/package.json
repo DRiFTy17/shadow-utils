@@ -1,6 +1,6 @@
 {
   "name": "shadow-utils",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Utilities for working across shadow DOM boundaries.",
   "main": "commonjs/index.js",
   "module": "esm5/index.js",
