@@ -1,6 +1,6 @@
-import { ShadowUtils } from 'shadow-utils';
+import { deepQuerySelectorAll, getActiveElement } from 'shadow-utils';
 
-describe('ShadowUtils', () => {
+describe('shadow-utils', () => {
   describe('deepQuerySelectorAll', () => {
     beforeAll(() => {
       fixture.load('shadow-utils/deepQuerySelectorAll.fixture.html');
@@ -12,7 +12,7 @@ describe('ShadowUtils', () => {
 
     it('should find all light, slotted, and shadow dom elements in proper order', () => {
       const selectors = ['input', 'textarea', 'button', 'p'];
-      const actual = ShadowUtils.deepQuerySelectorAll(document.body, selectors).map(el => el.id);
+      const actual = deepQuerySelectorAll(document.body, selectors).map(el => el.id);
       const expected = [
         'light-input',
         'light-textarea',
@@ -38,7 +38,7 @@ describe('ShadowUtils', () => {
     });
 
     it('should return empty array if no root element provided', () => {
-      const actual = ShadowUtils.deepQuerySelectorAll(undefined as any, []);
+      const actual = deepQuerySelectorAll(undefined as any, []);
       expect(actual).toBeDefined();
       expect(actual instanceof Array).toBe(true);
       expect(actual.length).toBe(0);
@@ -47,7 +47,7 @@ describe('ShadowUtils', () => {
     it('should not check original root element by default', () => {
       const rootElement = document.body.querySelector('div[id=light-div]') as HTMLElement;
       const selectors = ['div'];
-      const actual = ShadowUtils.deepQuerySelectorAll(rootElement, selectors).map(el => el.id);
+      const actual = deepQuerySelectorAll(rootElement, selectors).map(el => el.id);
       const expected = [
         'light-sub-div'
       ];
@@ -58,7 +58,7 @@ describe('ShadowUtils', () => {
     it('should check original root element', () => {
       const rootElement = document.body.querySelector('div[id=light-div]') as HTMLElement;
       const selectors = ['div'];
-      const actual = ShadowUtils.deepQuerySelectorAll(rootElement, selectors, true).map(el => el.id);
+      const actual = deepQuerySelectorAll(rootElement, selectors, true).map(el => el.id);
       const expected = [
         'light-div',
         'light-sub-div'
@@ -68,8 +68,8 @@ describe('ShadowUtils', () => {
     });
 
     it('should allow for both string and string array as selectors', () => {
-      const actual = ShadowUtils.deepQuerySelectorAll(document.body, 'input, p, div');
-      const expected = ShadowUtils.deepQuerySelectorAll(document.body, ['input', 'p', 'div']);
+      const actual = deepQuerySelectorAll(document.body, 'input, p, div');
+      const expected = deepQuerySelectorAll(document.body, ['input', 'p', 'div']);
 
       expect(actual.length).toBeGreaterThan(0);
       expect(expected.length).toBeGreaterThan(0);
@@ -80,7 +80,7 @@ describe('ShadowUtils', () => {
     it('should produce same result as native querySelectorAll for light DOM nodes only', () => {
       const rootElement = document.body.querySelector('div[id=light-container]') as HTMLElement;
       const actual = Array.from(rootElement.querySelectorAll('*'));
-      const expected = ShadowUtils.deepQuerySelectorAll(rootElement, '*');
+      const expected = deepQuerySelectorAll(rootElement, '*');
 
       expect(actual).toEqual(expected);
     });
@@ -90,7 +90,7 @@ describe('ShadowUtils', () => {
       const selectors = ['input', 'button[id=light-button]', 'div'];
 
       const actual = Array.from(rootElement.querySelectorAll(selectors.join(',')));
-      const expected = ShadowUtils.deepQuerySelectorAll(rootElement, selectors);
+      const expected = deepQuerySelectorAll(rootElement, selectors);
 
       expect(actual).toEqual(expected);
     });
@@ -106,11 +106,11 @@ describe('ShadowUtils', () => {
     });
 
     it('should return body when no element is focused', () => {
-      expect(ShadowUtils.getActiveElement()).toBe(document.body);
+      expect(getActiveElement()).toBe(document.body);
     });
 
     it('should produce same results as document.activeElement if nothing has focus', () => {
-      expect(ShadowUtils.getActiveElement()).toBe(document.body);
+      expect(getActiveElement()).toBe(document.body);
       expect(document.activeElement).toBe(document.body);
     });
 
@@ -118,7 +118,7 @@ describe('ShadowUtils', () => {
       const input = document.body.querySelector('input[id=light-input]') as HTMLInputElement;
       input.focus();
       
-      expect(ShadowUtils.getActiveElement()).toBe(input);
+      expect(getActiveElement()).toBe(input);
     });
 
     it('should produce same result as document.activeElement', () => {
@@ -126,7 +126,7 @@ describe('ShadowUtils', () => {
       input.focus();
       
       const actual = input;
-      const expected = ShadowUtils.getActiveElement() as HTMLInputElement;
+      const expected = getActiveElement() as HTMLInputElement;
 
       expect(actual).toBe(expected);
       expect(document.activeElement as HTMLElement).toBe(input);
@@ -138,9 +138,9 @@ describe('ShadowUtils', () => {
         input.focus();
 
         const expected = input;
-        const actual = ShadowUtils.getActiveElement() as HTMLInputElement;
+        const actual = getActiveElement() as HTMLInputElement;
 
-        expect(input).toBe(actual);
+        expect(expected).toBe(actual);
         done();
       });
     });
@@ -150,7 +150,7 @@ describe('ShadowUtils', () => {
       const input = (<ShadowRoot>webComponent.shadowRoot).querySelector('input[id=shadow-input]') as HTMLInputElement;
       input.focus();
 
-      expect(ShadowUtils.getActiveElement()).toBe(input);
+      expect(getActiveElement()).toBe(input);
     });
   });
 });
