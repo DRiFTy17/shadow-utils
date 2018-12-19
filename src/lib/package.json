@@ -5,5 +5,24 @@
   "main": "commonjs/index.js",
   "module": "esm5/index.js",
   "typings": "typings/index.d.ts",
+  "keywords": [
+    "shadow",
+    "dom",
+    "shadowdom",
+    "web",
+    "components",
+    "web-components",
+    "custom",
+    "elements"
+  ],
+  "author": "DriftIO <assist.driftio@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DRiFTy17/shadow-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DRiFTy17/shadow-utils/issues"
+  },
+  "homepage": "https://github.com/DRiFTy17/shadow-utils#readme",
   "license": "MIT"
 }
