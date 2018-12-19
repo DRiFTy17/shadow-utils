@@ -5,7 +5,6 @@
 Provides a library of useful functions for working with native web components and shadow DOM in the browser.
 
 ## Installation
-
 ```
 npm install shadow-utils
 ```

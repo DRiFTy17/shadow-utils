@@ -10,7 +10,8 @@ task('build', (done: TaskFunction) => {
   return runSequence(
     'clean',
     'lint',
-    'compile',
+    'compile:commonjs',
+    'compile:esm5',
     'prepare',
     done
   );
